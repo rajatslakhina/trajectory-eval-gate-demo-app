@@ -141,8 +141,8 @@ library, and the wrong one to describe as "pinned to the tag".
 
 ## Verification
 
-Three buckets, because "we ran a test", "we wrote a workflow file" and "we ran
-the app" are three different claims.
+Two buckets, because "it compiles" and "it ran" are different claims and only
+one of them is made here.
 
 **Verified — this actually happened.**
 
@@ -159,17 +159,15 @@ the app" are three different claims.
   seeded, so the app produces the same numbers. They are not illustrative and
   they are not a screenshot transcribed from memory.
 
-**Configured but not yet run at the time of writing.**
-
-- This repo's CI job (`xcodebuild -resolvePackageDependencies`, then
-  `xcodebuild build -scheme Demo -destination 'generic/platform=iOS Simulator'`
-  on `macos-15`). When it goes green it will establish that the remote package
-  resolves from GitHub and the app compiles against it — read the result at
+- **CI is green.** The `macos-15` job ran `xcodebuild -resolvePackageDependencies`
+  and then `xcodebuild build -scheme Demo -destination 'generic/platform=iOS
+  Simulator'`, and every step succeeded. Two things follow, and only two: the
+  version-pinned remote package genuinely **resolves from GitHub** — not from a
+  local path, not from a checkout sitting next door — and `Demo/DemoApp.swift`
+  genuinely **compiles** against it. Read the live result at
   [Actions](https://github.com/rajatslakhina/trajectory-eval-gate-demo-app/actions)
-  rather than trusting this paragraph.
-- Until then, note plainly: **`Demo/DemoApp.swift` has not been compiled by
-  anything.** The library's Linux build skips all SwiftUI source, and this app
-  only exists as an Xcode project so far.
+  rather than trusting this paragraph; a run ID quoted here goes stale on the
+  next commit.
 
 **Not established.**
 
